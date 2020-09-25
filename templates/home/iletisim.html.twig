@@ -1,0 +1,55 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} İletişim {{ data[0].title }} {% endblock %}
+{% block keywords %}  {{ data[0].keywords }} {% endblock %}
+{% block decsription %}  {{ data[0].decsription }} {% endblock %}
+
+{% block body %}
+    <div class="contact-form">
+    <hr class="soften">
+    <div class="wel wel-small">
+        <h2 class="title text-center">İletişim Bilgilerimiz</h2>
+        <hr class="soften"/>
+        <div class="status alert alert-success" style="display: none"></div>
+        <div class="row-fluid">
+            <div class="span8 relative">
+                {{ data[0].contact|raw }}
+            </div>
+            <div class="span4">
+                <div class="well well-small">
+
+                <h4> Bize Ulaşın</h4>
+                {{ include('home/messages.html.twig') }}
+                    <div>
+                <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+
+                    <div class="well well-small">
+
+                        <div class="form-group col-md-6">
+
+                            <input type="text" name="messages[name]" placeholder="name" class="input-xlarge"/>
+                                </div>
+
+                         <div class="form-group col-md-6">
+
+                            <input type="email" name="messages[email]" placeholder="email" class="input-xlarge"/>
+                                 </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="text" name="messages[subject]" placeholder="subject" class="input-xlarge"/>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <textarea rows="3" name="messages[message]" id="textarea" placeholder="Message..."  class="input-xlarge"></textarea>
+                        </div>
+                        <input type="hidden" name="token" value="{{ csrf_token('form-message') }}"/>
+                        <input class="shopBtn" type="submit" value="MESAJI GÖNDER">
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

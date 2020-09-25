@@ -1,0 +1,60 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Kategori Listesi{% endblock %}
+{% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Kategori Listesi</h4> </div><br>
+            <small><a href="{{ path('admin_product_new') }}" class="btn btn-danger">Kategori Ekle</a> </small>
+
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="white-box">
+
+            <div class="table-responsive">
+                <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Parentid</th>
+                <th>Title</th>
+                <th>Keywords</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Göster</th>
+                <th>Düzenle</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.parentid }}</td>
+                <td>{{ category.title }}</td>
+                <td>{{ category.keywords }}</td>
+                <td>{{ category.description }}</td>
+                <td>{{ category.status }}</td>
+                <td>
+                    <a href="{{ path('admin_category_show', {'id': category.id}) }}" class="btn btn-block btn-info btn-xs">Göster</a>
+                </td><td>
+                    <a href="{{ path('admin_category_edit', {'id': category.id,'pid':category.parentid}) }}" class="btn btn-block btn-primary btn-xs">Düzenle</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_category_new') }}">Create new</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+</div>
+{% endblock %}
+

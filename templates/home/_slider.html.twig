@@ -1,0 +1,56 @@
+<section id="slider"><!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active" ></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><b>ENFESS</b> YEMEK</h1>
+
+                                <h2>EN LEZZETLİ</h2>
+                                <p> </p>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{{ asset('assets/') }}images/home/son2.jpg" class="girl img-responsive" alt="" />
+                                <img src="{{ asset('assets/') }}images/home/son5.jpg"  class="pricing" alt="" />
+                            </div>
+                        </div>
+                        {% for rs in sliders %}
+
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1>{{ rs.title }}</h1>
+
+                                    <p> </p>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="{{ path('product_detail', {'id' : rs.id}) }}">
+                                        <img src="{{ asset('uploads') }}/images/{{ rs.image }}" class="girl img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->

@@ -1,0 +1,56 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} SEPET{% endblock %}
+
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block body %}
+<div class="col-sm-9 padding-right">
+    <div class="product-details"><!--product-details-->
+        <div class="col-sm-5">
+            <div class="view-product">
+    <h2>SEPETİM</h2>
+                {{ include ('home/messages.html.twig') }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Yemek Adı</th>
+                <th>Satış Fiyatı</th>
+                <th>Adet Sayısı</th>
+                <th>Toplam Fiyat</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shopcart in shopcarts %}
+            <tr>
+                <td>{{ shopcart.id }}</td>
+                <td>{{ shopcart.title }}</td>
+                <td>{{ shopcart.sprice }}</td>
+                <td>{{ shopcart.quantity }}</td>
+                <td>{{ shopcart.quantity * shopcart.sprice }}</td>
+                <td>
+                    <a href="{{ path('home_shopcart_del',{'id': shopcart.id}) }}" onclick="return confirm('silmek istediğinize eminmisiniz?');" class="btn btn-block btn-danger btn-xs">Sil</a></td>
+
+                </td>
+            </tr>
+
+        {% else %}
+
+            <tr>
+                <td colspan="5">Sepet Boş</td>
+            </tr>
+        {% endfor %}
+        <tr>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+                <a href="{{ path('orders_front_new') }}" class="btn btn-block btn-success btn-large" >Sepettekileri Satın Al</a>
+
+            </div> </div></div></div></div>
+
+        {% endblock %}
+

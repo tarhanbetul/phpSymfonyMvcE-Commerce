@@ -1,0 +1,53 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} SEPET{% endblock %}
+
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block body %}
+<div class="col-sm-9 padding-right">
+    <div class="product-details"><!--product-details-->
+        <div class="col-sm-5">
+            <div class="view-product">
+                {{ include ('home/messages.html.twig') }}
+    <h1>SİPARİŞLER</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ADI</th>
+                <th>ADET </th>
+                <th>ŞEHİR</th>
+                <th>TELEFON</th>
+
+
+                <th>DURUM</th>
+                <th>İŞLEM</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.name }}</td>
+                <td>{{ order.amount }}</td>
+                <td>{{ order.city }}</td>
+                <td>{{ order.phone }}</td>
+
+                <td>{{ order.status }}</td>
+
+                <td>
+                    <a href="{{ path('orders_show_front', {'id': order.id}) }}">Göster</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            </div> </div></div></div></div>
+
+{% endblock %}
+

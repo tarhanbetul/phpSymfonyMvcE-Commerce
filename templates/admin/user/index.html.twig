@@ -1,0 +1,58 @@
+
+{% extends 'adminbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Üye Listesi</h4> </div><br>
+                <small><a href="{{ path('admin_user_create') }}"/><button class="btn btn-success">Üye Ekle</button> </small>
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+
+                    <ol class="breadcrumb">
+
+
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="white-box">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Id</font></font></th>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı Soyadı</font></font></th>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email</font></font></th>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Durum</font></font></th>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Roller</font></font></th>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Düzenle</font></font></th>
+                            <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sil</font></font></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in users %}
+                        <tr>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ row.id }}</font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ row.name }}</font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ row.email }}</font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ row.status }}</font></font></td>
+                            <td>{% for item in row.roles %}
+                                {{ item }}
+                                {% endfor %}
+                            </td>
+                            <td><a href="{{ path('admin_user_edit',{'id':row.id}) }}" class="btn btn-block btn-info btn-xs">Düzenle</a></td>
+                            <td><a href="{{ path('admin_user_delete',{'id':row.id}) }}" onclick="return confirm('silmek istediğinize eminmisiniz?');" class="btn btn-block btn-danger btn-xs">Sil</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+    </div>
+{% endblock %}

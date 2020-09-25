@@ -1,0 +1,11 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} {{ data[0].title }} {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block decsription %} {{ data[0].decsription }} {% endblock %}
+
+
+{% block sidebar %} {{  include ('home/_sidebar.html.twig')  }} {% endblock %}
+{% block slider %} {{  include ('home/_slider.html.twig')  }} {% endblock %}
+{% block content %} {{  include ('home/_content.html.twig')  }} {% endblock %}
+{% block footer %} {{  include ('home/_footer.html.twig')  }} {% endblock %}

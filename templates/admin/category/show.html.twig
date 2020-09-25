@@ -1,0 +1,57 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Kategori Detay{% endblock %}
+{% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Kategori Detayı</h4> </div><br>
+            <small><a href="{{ path('admin_category_new') }}"</a><button class="btn btn-success">Kategori Ekle</button> </small>
+
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="white-box">
+
+            <div class="table-responsive">
+                <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Parentid</th>
+                <td>{{ category.parentid }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ category.title }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ category.keywords }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ category.description }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ category.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_category_index') }}">back to list</a>
+
+    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
+
+    {{ include('admin/category/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+</div>
+
+{% endblock %}

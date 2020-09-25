@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Düzenle {% endblock %}
+
+{% block body %}
+
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('user_index') }}">back to list</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+
+
+{% endblock %}

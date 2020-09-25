@@ -1,0 +1,67 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Sipariş Listesi{% endblock %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Sipariş Listesi</h4> </div><br>
+
+
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="white-box">
+
+                <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Userid</th>
+                <th>Amount</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Phone</th>
+
+                <th>Note</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.userid }}</td>
+                <td>{{ order.amount }}</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.adress }}</td>
+                <td>{{ order.city }}</td>
+                <td>{{ order.phone }}</td>
+
+                <td>{{ order.note }}</td>
+                <td>{{ order.status }}</td>
+
+                <td>
+                    <a href="javascript:openWin('{{ path('admin_orders_show', {'id': order.id}) }}','','toolbar=no, location=no,directories=0,status=no,top=100,left=200,menuBar=no,scrollBars=no,resizable=no,width=600,height=500');">Göster</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+    </div>
+{% endblock %}
+
+
+

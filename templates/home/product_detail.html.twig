@@ -1,0 +1,83 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} {{ data[0].title }} {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block decsription %} {{ data[0].decsription }} {% endblock %}
+{% block sidebar %} {{ include ('home/_sidebar.html.twig') }} {% endblock %}
+{% block body %}
+<div class="col-sm-9 padding-right">
+    <div class="product-details"><!--product-details-->
+        <div class="col-sm-5">
+
+            <div class="view-product">
+                <img src="{{ asset('uploads') }}/images/{{ data[0].image }}" alt="">
+
+            </div>
+            <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    {% for rs in images %}
+                    <div class="item">
+                        <a href=""><img src="{{ asset('uploads') }}/images/{{ rs.image }}" alt=""></a>
+
+                    </div>
+                    {% endfor %}
+                    <div class="item active">
+                        <a href=""><img src="{{ asset('uploads') }}/images/{{ data[0].image }}" alt=""></a>
+
+
+                    </div>
+                    {% for rs in images %}
+                    <div class="item">
+                        <a href=""><img src="{{ asset('uploads') }}/images/{{ rs.image }}" alt=""></a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left item-control" href="#similar-product" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right item-control" href="#similar-product" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-7">
+            <div class="product-information"><!--/product-information-->
+                <img src="images/product-details/new.jpg" class="newarrival" alt="">
+                <h2>{{ data[0].title }}</h2>
+                <p>{{ data[0].detail|raw }}</p>
+                <img src="images/product-details/rating.png" alt="">
+                <hr class="soft">
+                <form name="shopcart" class="form-horizontal qtyFrm" action="{{ path('home_shopcart_new') }}" method="post">
+                    <div class="control-group">
+                        <input type="hidden" name="shopcart[productid]" value="{{ data[0].id }}">
+                        Kaç Adet (1porsiyon:200gr)<input type="number" name="shopcart[quantity]" class="span6" value="1">
+                    </div>
+
+                <span>
+                    <input type="hidden" name="token" value="{{ csrf_token('add-item') }}">
+                    <p><b>FİYATI :</b>{{ data[0].sprice }}TL</p>
+                 <button type="submit" class="btn btn-fefault cart">
+
+										Sepete Ekle
+									</button>
+
+								</span>
+                <p><b></b> </p>
+                <p>{{ data[0].description }}</p>
+
+                </form>
+                <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt=""></a>
+            </div><!--/product-information-->
+        </div>
+    </div><!--/product-details-->
+
+
+
+</div>
+{% endblock %}

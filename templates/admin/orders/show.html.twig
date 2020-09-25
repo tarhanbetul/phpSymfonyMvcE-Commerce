@@ -1,0 +1,149 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin') }}/plugins/images/favicon.png">
+    <title>{% block title %}Sipariş Detayı{% endblock %}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('admin') }}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="{{ asset('admin') }}/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="{{ asset('admin') }}/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('admin') }}/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="{{ asset('admin') }}/css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script language="JavaScript" type="text/javascript">
+        function openWin(windowURL, windowName, windowFeatures) {    window.open(windowURL, windowName, windowFeatures);}
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
+
+</head>
+{% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Sipariş Detayı</h4> </div><br>
+
+
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="white-box">
+
+            <div class="table-responsive">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ order.userid }}</td>
+            </tr>
+            <tr>
+                <th>Adet</th>
+                <td>{{ order.amount }}</td>
+            </tr>
+            <tr>
+                <th>Adı</th>
+                <td>{{ order.name }}</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ order.adress }}</td>
+            </tr>
+            <tr>
+                <th>Şehir</th>
+                <td>{{ order.city }}</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>{{ order.phone }}</td>
+            </tr>
+            <form action="{{ path('admin_orders_update',{'id': order.id}) }}" method="post">
+            <tr>
+                <th>shipinfo</th>
+                <td><textarea name="shipinfo" cols="100" rows="3" >{{ order.shipinfo }}</textarea> </td>
+            </tr>
+            <tr>
+                <th>Admin Note</th>
+                <td><textarea name="note" cols="100" rows="3" >{{ order.note }}</textarea> </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><select name="status">
+                        <option>{{ order.status }} </option>
+                        <option>Accepted</option>
+                        <option>InShipping</option>
+                        <option>Cancaled</option>
+                        <option>Completed</option>
+                    </select>
+                    <input type="submit" value="Güncelle">
+                </td>
+            </tr>
+            </form>
+
+        </tbody>
+    </table>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Product Name</th>
+                        <th>Sale Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set total=0 %}
+                    {% for rs in orderdetail %}
+                    <tr>
+                        <td>{{ rs.id }}</td>
+                        <td>{{ rs.name }}</td>
+                        <td>{{ rs.price }}</td>
+                        <td>{{ rs.quantity }}</td>
+                        <td>{{ rs.amount }}</td>
+                        <td>{{ rs.status }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">Order Detail</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="5"> <b>Toplam Alışveriş Tutarı  :{{ order.amount }} TL</b> <br>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+    <a href="{{ path('orders_index') }}">back to list</a>
+
+    <a href="{{ path('orders_edit', {'id': order.id}) }}">edit</a>
+
+    {{ include('orders/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+</div>
+
+{% endblock %}
